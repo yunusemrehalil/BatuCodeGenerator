@@ -8,16 +8,46 @@ import android.graphics.PixelFormat
 import android.graphics.drawable.Drawable
 
 class CanvasToBatuCode(private val encryptedProduct: String) : Drawable() {
-    private val paint = Paint()
+    private val firstPaint = Paint()
+    private val secondPaint = Paint()
+    private val thirdPaint = Paint()
 
     init {
-        paint.isAntiAlias = true
-        paint.style = Paint.Style.STROKE
-        paint.textSize = 50f
-        paint.strokeWidth = 4f
+        firstPaint.isAntiAlias = true
+        firstPaint.style = Paint.Style.STROKE
+        firstPaint.textSize = 50f
+        firstPaint.strokeWidth = 4f
+
+        secondPaint.isAntiAlias = true
+        secondPaint.style = Paint.Style.FILL
+
+        thirdPaint.isAntiAlias = true
+        thirdPaint.style = Paint.Style.FILL
     }
 
-    private fun getColorForLetter(letter: String): Int {
+    private fun getColorForFirstLetter(letter: String): Int {
+        return when (letter.lowercase()) {
+            "a", "b", "c" -> Color.RED
+            "d", "e", "f" -> Color.GREEN
+            "g", "h", "i" -> Color.BLUE
+            "j", "k", "l" -> Color.MAGENTA
+            "m", "n", "o" -> Color.CYAN
+            else -> Color.BLACK
+        }
+    }
+
+    private fun getColorForSecondLetter(letter: String): Int {
+        return when (letter.lowercase()) {
+            "a", "b", "c" -> Color.RED
+            "d", "e", "f" -> Color.GREEN
+            "g", "h", "i" -> Color.BLUE
+            "j", "k", "l" -> Color.MAGENTA
+            "m", "n", "o" -> Color.CYAN
+            else -> Color.BLACK
+        }
+    }
+
+    private fun getColorForThirdLetter(letter: String): Int {
         return when (letter.lowercase()) {
             "a", "b", "c" -> Color.RED
             "d", "e", "f" -> Color.GREEN
@@ -29,12 +59,30 @@ class CanvasToBatuCode(private val encryptedProduct: String) : Drawable() {
     }
 
     override fun draw(canvas: Canvas) {
-        val firstLetter = encryptedProduct.firstOrNull()?.toString() ?: ""
-        paint.color = getColorForLetter(firstLetter)
+        val firstLetter = encryptedProduct[0].toString()
+        val secondLetter = encryptedProduct[1].toString()
+        val thirdLetter = encryptedProduct[2].toString()
+        firstPaint.color = getColorForFirstLetter(firstLetter)
+        secondPaint.color = getColorForSecondLetter(secondLetter)
+        thirdPaint.color = getColorForThirdLetter(thirdLetter)
         val centerX = bounds.centerX().toFloat()
         val centerY = bounds.centerY().toFloat()
-        val radius = bounds.width() / 2f
-        canvas.drawCircle(centerX, centerY, radius, paint)
+        val radius = (bounds.width().coerceAtMost(bounds.height()) / 2).toFloat()
+        canvas.drawCircle(centerX, centerY, radius, firstPaint)
+        canvas.drawRect(
+            centerX - (radius / 2),
+            centerY - (radius / 2),
+            centerX,
+            centerY,
+            secondPaint
+        )
+        canvas.drawRect(
+            centerX,
+            centerY,
+            centerX + (radius / 2),
+            centerY + (radius / 2),
+            thirdPaint
+        )
     }
 
     override fun setAlpha(p0: Int) {

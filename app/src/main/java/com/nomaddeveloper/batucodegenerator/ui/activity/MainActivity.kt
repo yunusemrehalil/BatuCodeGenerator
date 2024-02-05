@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.google.firebase.FirebaseApp
 import com.nomaddeveloper.batucodegenerator.R
 import com.nomaddeveloper.batucodegenerator.databinding.ActivityMainBinding
 import com.nomaddeveloper.batucodegenerator.ui.fragment.CodeGeneratorFragment
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        FirebaseApp.initializeApp(this)
         val bottomNavigationMenu = binding.bottomNavMenu
         val defaultFragment = CodeGeneratorFragment()
         val fragmentManager = supportFragmentManager
