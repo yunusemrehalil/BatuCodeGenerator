@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "947841508444",
+    "project_id": "teknofestmarket",
+    "storage_bucket": "teknofestmarket.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:947841508444:android:b40a2e8b50f0e0e6d7b299",
+        "android_client_info": {
+          "package_name": "com.nomaddeveloper.batucodegenerator"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABhiAXKFo2IZFp-vynzb-lGAYeHU-plMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

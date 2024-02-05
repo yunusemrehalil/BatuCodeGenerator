@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottom_nav_code_generator"
+        android:icon="@drawable/baseline_code_generator"
+        android:title="@string/item_code_generator" />
+    <item
+        android:id="@+id/bottom_nav_code_reader"
+        android:icon="@drawable/baseline_code_reader"
+        android:title="@string/item_code_reader" />
+</menu>
